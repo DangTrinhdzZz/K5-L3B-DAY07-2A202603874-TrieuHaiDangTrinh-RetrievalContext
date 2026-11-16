@@ -1,0 +1,16 @@
+{
+  "defined_before_test": true,
+  "selection_order": [
+    "highest dev Evidence Hit@3",
+    "then highest dev Hit@1",
+    "then lower mean retrieval latency",
+    "then method name for deterministic tie-break"
+  ],
+  "quality_checks": [
+    "context must preserve source, physical page, and chunk ID",
+    "agent must call retrieval and cite only final context",
+    "unanswerable questions should produce an evidence-insufficient response"
+  ],
+  "cost_policy": "Local embedding/retrieval cost is USD 0. Record API tokens; do not invent monetary cost when the API omits it."
+}
+

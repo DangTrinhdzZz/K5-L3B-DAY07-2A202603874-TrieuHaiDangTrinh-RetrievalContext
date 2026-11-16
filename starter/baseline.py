@@ -129,7 +129,9 @@ def main():
                'index_seconds': index_seconds, 'service_cost_usd': 0}
     args.output.mkdir(parents=True, exist_ok=True)
     for name, obj in (('traces.json', traces), ('summary.json', summary)):
-        (args.output / name).write_text(json.dumps(obj, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        # ASCII-escaped JSON remains portable when a Windows caller uses its
+        # active legacy code page instead of explicitly requesting UTF-8.
+        (args.output / name).write_text(json.dumps(obj, ensure_ascii=True, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 
 

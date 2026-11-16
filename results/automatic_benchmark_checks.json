@@ -1,0 +1,298 @@
+{
+  "automatic_check": "passed",
+  "global_checks": {
+    "total_24": true,
+    "split_17_dev_7_test": true,
+    "answerability_counts": true,
+    "unique_query_ids": true,
+    "dev_test_disjoint": true,
+    "no_obvious_cross_split_duplicate": true,
+    "all_cases_pass": true,
+    "manifest_page_count": true,
+    "manifest_chunk_count": true,
+    "chunks_hash_matches_manifest": true,
+    "index_hash_matches_manifest": true,
+    "embedding_contract": true,
+    "normalized_source_hash_matches_manifest": true
+  },
+  "cross_split_duplicate_candidates": [],
+  "per_case": {
+    "q01": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q02": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q03": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q04": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q05": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q06": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q07": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q08": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q09": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q10": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q11": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q12": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q13": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q14": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q15": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q16": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q17": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q18": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q19": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q20": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "gold_fields_present": true,
+        "source_exists": true,
+        "physical_page_valid": true,
+        "gold_chunk_ids_exist": true,
+        "evidence_in_declared_chunk_page": true
+      }
+    },
+    "q21": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "no_fake_gold_fields": true,
+        "expected_abstention_present": true
+      }
+    },
+    "q22": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "no_fake_gold_fields": true,
+        "expected_abstention_present": true
+      }
+    },
+    "q23": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "no_fake_gold_fields": true,
+        "expected_abstention_present": true
+      }
+    },
+    "q24": {
+      "automatic_check": "passed",
+      "checks": {
+        "schema": true,
+        "manual_status_pending": true,
+        "no_fake_gold_fields": true,
+        "expected_abstention_present": true
+      }
+    }
+  },
+  "manual_review_status": "pending_review"
+}

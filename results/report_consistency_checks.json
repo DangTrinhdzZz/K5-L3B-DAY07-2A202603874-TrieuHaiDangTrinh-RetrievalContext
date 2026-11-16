@@ -1,0 +1,11 @@
+{
+  "automatic_check": "passed",
+  "checks": {
+    "live_counts": true,
+    "live_tokens": true,
+    "live_cost": true,
+    "manual_pending_counts": true,
+    "retrieval_test_metrics": true,
+    "report_key_facts_present": true
+  }
+}

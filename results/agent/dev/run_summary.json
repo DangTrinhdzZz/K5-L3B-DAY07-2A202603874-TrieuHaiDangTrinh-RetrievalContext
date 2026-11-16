@@ -1,0 +1,14 @@
+[
+  {
+    "method": "hybrid",
+    "model": "gpt-6-luna",
+    "preferred_model": "gpt-6-luna",
+    "preferred_available": true,
+    "visible_model_count": 96,
+    "cases": 17,
+    "requested_cases": 17,
+    "errors": 0,
+    "estimated_cost_usd": 0.0030589000000000002,
+    "cost_budget_usd": 1.0
+  }
+]

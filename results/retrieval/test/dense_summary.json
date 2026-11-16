@@ -1,0 +1,23 @@
+{
+  "method": "dense",
+  "split": "test",
+  "answerable_queries": 5,
+  "hit_at_1": {
+    "n": 1,
+    "N": 5,
+    "rate": 0.2
+  },
+  "evidence_hit_at_3": {
+    "n": 2,
+    "N": 5,
+    "rate": 0.4
+  },
+  "context_evidence_rate": {
+    "n": 2,
+    "N": 5,
+    "rate": 0.4
+  },
+  "mean_latency_ms": 66.1513199996989,
+  "errors": 0,
+  "embedding_cost_usd": 0
+}

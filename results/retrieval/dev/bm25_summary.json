@@ -1,0 +1,23 @@
+{
+  "method": "bm25",
+  "split": "dev",
+  "answerable_queries": 15,
+  "hit_at_1": {
+    "n": 8,
+    "N": 15,
+    "rate": 0.5333333333333333
+  },
+  "evidence_hit_at_3": {
+    "n": 15,
+    "N": 15,
+    "rate": 1.0
+  },
+  "context_evidence_rate": {
+    "n": 15,
+    "N": 15,
+    "rate": 1.0
+  },
+  "mean_latency_ms": 1.4053666667071714,
+  "errors": 0,
+  "embedding_cost_usd": 0
+}

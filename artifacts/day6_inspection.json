@@ -1,0 +1,20 @@
+{
+  "day6_root": "D:\\Coding\\AI20K\\K5-L3B-DAY06-TrieuHaiDangTrinh-2A202603874-DataIngestion",
+  "normalized_pages": "D:\\Coding\\AI20K\\K5-L3B-DAY06-TrieuHaiDangTrinh-2A202603874-DataIngestion\\data\\normalized_pages.jsonl",
+  "normalized_pages_exists": true,
+  "pdf_exists": true,
+  "persistent_chunk_file_found": false,
+  "day6_backend": "PostgreSQL 16.16 + pgvector 0.8.7",
+  "day6_table_and_strategy": "ingestion_chunks:B",
+  "day6_database_port_live": false,
+  "day6_reported_counts": {
+    "A": 309,
+    "B": 191,
+    "C": 191
+  },
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "dimension": 384,
+  "normalize_embeddings": true,
+  "query_prefix": "Represent this sentence for searching relevant passages: ",
+  "decision": "rebuild a portable Day 7 exact-cosine index from Day 6 normalized pages and identical strategy-B chunking"
+}

@@ -1,0 +1,8 @@
+openai>=2.0
+python-dotenv>=1.0
+
+# Install this optional dependency only in a compatible Python 3.11/3.12
+# environment. The supplied workflow can instead use Day 6's Python 3.11
+# embedding worker, while the main CLI and tests run under the requested Python.
+sentence-transformers==5.1.2; python_version < "3.14"
+

@@ -1,0 +1,221 @@
+{
+  "dev/hybrid": {
+    "cases": 17,
+    "successful": 17,
+    "errors": 0,
+    "tool_use": {
+      "n": 17,
+      "N": 17
+    },
+    "tool_call_distribution": {
+      "1": 17
+    },
+    "structural_citation_validity": {
+      "n": 15,
+      "N": 15
+    },
+    "citation_syntactic_validity": {
+      "n": 18,
+      "N": 18
+    },
+    "answers_with_citation": {
+      "n": 15,
+      "N": 15
+    },
+    "behavioral_abstention_on_unanswerable": {
+      "n": 2,
+      "N": 2,
+      "manual_correctness": "pending_review"
+    },
+    "false_abstention_behavior": {
+      "n": 0,
+      "N": 15,
+      "semantic_grade": "pending_review"
+    },
+    "context_evidence_rate": {
+      "n": 14,
+      "N": 15
+    },
+    "grounded_answer_0_1_2": "pending_review",
+    "citation_semantic_validity": "pending_review",
+    "mean_latency_ms": 4027.282070588519,
+    "token_usage": {
+      "input_tokens": 19814,
+      "output_tokens": 2155,
+      "total_tokens": 21969
+    },
+    "estimated_api_cost_usd": 0.0030589000000000002,
+    "manual_evaluation": {
+      "reviewer_completion": {
+        "n": 0,
+        "N": 17
+      },
+      "status": "pending manual review",
+      "grounded_answer": "pending manual review",
+      "semantic_citation_validity": "pending manual review",
+      "correct_abstention": "pending manual review",
+      "false_abstention": "pending manual review"
+    }
+  },
+  "test/dense": {
+    "cases": 7,
+    "successful": 7,
+    "errors": 0,
+    "tool_use": {
+      "n": 7,
+      "N": 7
+    },
+    "tool_call_distribution": {
+      "1": 7
+    },
+    "structural_citation_validity": {
+      "n": 5,
+      "N": 5
+    },
+    "citation_syntactic_validity": {
+      "n": 6,
+      "N": 6
+    },
+    "answers_with_citation": {
+      "n": 5,
+      "N": 5
+    },
+    "behavioral_abstention_on_unanswerable": {
+      "n": 2,
+      "N": 2,
+      "manual_correctness": "pending_review"
+    },
+    "false_abstention_behavior": {
+      "n": 0,
+      "N": 5,
+      "semantic_grade": "pending_review"
+    },
+    "context_evidence_rate": {
+      "n": 2,
+      "N": 5
+    },
+    "grounded_answer_0_1_2": "pending_review",
+    "citation_semantic_validity": "pending_review",
+    "mean_latency_ms": 3931.8094571426627,
+    "token_usage": {
+      "input_tokens": 8081,
+      "output_tokens": 1011,
+      "total_tokens": 9092
+    },
+    "estimated_api_cost_usd": 0.0013136,
+    "manual_evaluation": {
+      "reviewer_completion": {
+        "n": 0,
+        "N": 7
+      },
+      "status": "pending manual review",
+      "grounded_answer": "pending manual review",
+      "semantic_citation_validity": "pending manual review",
+      "correct_abstention": "pending manual review",
+      "false_abstention": "pending manual review"
+    }
+  },
+  "test/hybrid": {
+    "cases": 7,
+    "successful": 7,
+    "errors": 0,
+    "tool_use": {
+      "n": 7,
+      "N": 7
+    },
+    "tool_call_distribution": {
+      "1": 7
+    },
+    "structural_citation_validity": {
+      "n": 5,
+      "N": 5
+    },
+    "citation_syntactic_validity": {
+      "n": 5,
+      "N": 5
+    },
+    "answers_with_citation": {
+      "n": 5,
+      "N": 5
+    },
+    "behavioral_abstention_on_unanswerable": {
+      "n": 2,
+      "N": 2,
+      "manual_correctness": "pending_review"
+    },
+    "false_abstention_behavior": {
+      "n": 0,
+      "N": 5,
+      "semantic_grade": "pending_review"
+    },
+    "context_evidence_rate": {
+      "n": 3,
+      "N": 5
+    },
+    "grounded_answer_0_1_2": "pending_review",
+    "citation_semantic_validity": "pending_review",
+    "mean_latency_ms": 3808.5173428568983,
+    "token_usage": {
+      "input_tokens": 8420,
+      "output_tokens": 889,
+      "total_tokens": 9309
+    },
+    "estimated_api_cost_usd": 0.0012865,
+    "manual_evaluation": {
+      "reviewer_completion": {
+        "n": 0,
+        "N": 7
+      },
+      "status": "pending manual review",
+      "grounded_answer": "pending manual review",
+      "semantic_citation_validity": "pending manual review",
+      "correct_abstention": "pending manual review",
+      "false_abstention": "pending manual review"
+    }
+  },
+  "manual_review": {
+    "benchmark": {
+      "reviewed": 0,
+      "total": 24,
+      "pending": 24,
+      "output": "results/manual/benchmark_reviews.csv"
+    },
+    "agent": {
+      "reviewed": 0,
+      "total": 31,
+      "pending": 31,
+      "output": "results/manual/agent_audit.csv"
+    },
+    "next_commands": [
+      "python scripts/lab.py audit benchmark",
+      "python scripts/lab.py audit agent",
+      "python scripts/lab.py audit status",
+      "python scripts/lab.py aggregate"
+    ]
+  },
+  "test_manual_comparison": {
+    "status": "pending manual review",
+    "dense": {
+      "reviewer_completion": {
+        "n": 0,
+        "N": 7
+      },
+      "status": "pending manual review",
+      "grounded_answer": "pending manual review",
+      "semantic_citation_validity": "pending manual review",
+      "correct_abstention": "pending manual review",
+      "false_abstention": "pending manual review"
+    },
+    "hybrid": {
+      "reviewer_completion": {
+        "n": 0,
+        "N": 7
+      },
+      "status": "pending manual review",
+      "grounded_answer": "pending manual review",
+      "semantic_citation_validity": "pending manual review",
+      "correct_abstention": "pending manual review",
+      "false_abstention": "pending manual review"
+    }
+  }
+}
