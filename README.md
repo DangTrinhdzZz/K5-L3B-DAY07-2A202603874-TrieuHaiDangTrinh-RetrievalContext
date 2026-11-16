@@ -1,33 +1,151 @@
 # Day 7 — Agentic RAG
 
-**Bài cá nhân · Python 3.11+ · tiếp nối Day 6**
+Individual submission for **2A202603874 — Trieu Hai Dang Trinh**. The implementation connects to the verified Day 6 corpus, recreates its strategy-B chunks without modifying Day 6, compares dense/BM25/hybrid retrieval, and provides an OpenAI Responses API function-calling agent with auditable traces.
 
-Dùng embedding và vector store từ Day 6 để xây một agent biết tìm bằng chứng, trả lời có nguồn và nhận biết khi không đủ thông tin. Bạn tự chọn kiến trúc, số tool và cách tổ chức retrieval.
+## Architecture
 
-> **Tùy chọn:** [Gợi ý dùng AI để lập trình](AGENT_SETUP.md) giúp bạn làm lab; phần này không bắt buộc và không tính điểm.
+```text
+Day 6 normalized pages (read-only)
+  -> deterministic strategy-B chunks + stable IDs
+  -> BGE normalized float32 exact-cosine index
+  -> Dense / BM25 / Hybrid RRF / Hybrid+MMR retrieval
+  -> locked Hybrid RRF
+  -> Responses API agent (question + maximum top-3 passages)
+  -> immutable JSONL traces
+  -> automatic checks + interactive human audit + aggregate
+```
 
-## Bài cần làm
+Gold answer/evidence never enters retrieval or the agent. It is joined locally only after execution for mechanical metrics and the human-review packet.
 
-![Agent tìm tài liệu trong kho Day 6 và trả lời có nguồn](assets/retrieval-pipeline.svg)
+## Verified data path
 
-1. Kết nối dữ liệu, embedding và vector store Day 6.
-2. Xây agent dùng model thật và ít nhất một khả năng truy xuất dữ liệu. Agent có thể dùng nhiều tool và nhiều lượt gọi.
-3. Thử **ít nhất 3 phương pháp retrieval khác nhau**, trong đó có dense retrieval dùng vector store Day 6. Tự chọn các phương pháp còn lại; xem [gợi ý](GUIDE.md#2-thử-các-phương-pháp-retrieval).
-4. Thử nhiều cấu hình, benchmark, phân tích lỗi và chọn cấu hình tốt trên **dev**; sau đó đánh giá trên **test**.
+Day 6 stored 309/191/191 chunks for strategies A/B/C in PostgreSQL 16.16 + pgvector 0.8.7 table `ingestion_chunks`. During Day 7 inspection the database port `127.0.0.1:55433` was offline and no persistent chunk export existed. Day 7 therefore rebuilds the exact 191 strategy-B chunks from Day 6's 51-page `data/normalized_pages.jsonl`, then creates a portable normalized float32 exact-cosine index using `BAAI/bge-small-en-v1.5` (384 dimensions). Dense, BM25 and hybrid all use these same chunks and IDs.
 
-Benchmark tối thiểu có **24 câu**: dev gồm 15 câu có đáp án và 2 câu thiếu bằng chứng; test gồm 5 câu có đáp án và 2 câu thiếu bằng chứng. Xem [benchmark](BENCHMARK.md) và [rubric](RUBRIC.md).
+The main CLI/tests run under the requested Python 3.14 environment. `sentence-transformers`/PyTorch are not installed there, so embedding uses the already-provisioned Day 6 Python 3.11 environment and its local Hugging Face cache in offline mode. No mock or random vectors are used.
 
-## Thử thách nâng cao · +15 điểm
+## Setup
 
-Index một tài liệu thực tế từ **100 trang** có bảng, ảnh và biểu đồ; xây agent truy xuất và trả lời các câu hỏi về nội dung đó. Hoàn thành [thử thách nâng cao](ADVANCED.md) và đạt **ít nhất 90% benchmark test** để nhận 15 điểm bonus. Phần cơ bản tối đa 85 điểm; toàn bài tối đa 100 điểm.
+From this repository root in PowerShell:
 
-## Bắt đầu
+```powershell
+Copy-Item .env.example .env  # only if .env does not already exist
+# Add OPENAI_API_KEY to .env for live agent evaluation. Never commit .env.
+$py = "..\.venv\Scripts\python.exe"
+& $py --version
+& $py -m pip install -r requirements.txt
+```
 
-1. Đọc [hướng dẫn](GUIDE.md), [rubric](RUBRIC.md) và [quy tắc](RULES.md).
-2. Tạo repo cá nhân theo [cách nộp bài](SUBMISSION.md), chuẩn bị đầu ra Day 6 và model hỗ trợ tool calling.
-3. Dùng hoặc thay thế [starter](starter/README.md); bạn cần kết nối model và vector store thật.
-4. Chạy `python -m unittest discover -s tests -v`. Test mock chỉ kiểm tra code, không phải benchmark agent thật.
+The existing `.env` is ignored. The program checks key presence as a boolean and never logs its value.
 
-![Các bước thử nghiệm trên dev và đánh giá trên test](assets/experiment-loop.svg)
+## Environment variables
 
-Nộp code, cách chạy, cấu hình, benchmark, trace và [báo cáo](report/individual/MSSV_HoTen.md). Thời gian ở [checkpoints](CHECKPOINTS.md) là gợi ý, có thể điều chỉnh theo lớp và phạm vi thử nghiệm.
+| Variable | Purpose |
+|---|---|
+| `DAY6_ROOT`, `DAY6_PDF_PATH`, `DAY6_NORMALIZED_PAGES_PATH` | Read-only Day 6 inputs |
+| `EMBEDDING_PYTHON`, `EMBEDDING_MODEL` | Compatible local BGE worker/model |
+| `AGENT_MODEL`, `OPENAI_REASONING_EFFORT` | Responses API model/reasoning |
+| `AGENT_MAX_TOOL_CALLS`, `AGENT_MAX_OUTPUT_TOKENS` | Bounded agent execution |
+| `DENSE_TOP_K`, `BM25_TOP_K`, `FINAL_CONTEXT_K`, `RRF_K` | Retrieval candidates/context/fusion |
+| `RANDOM_SEED` | Reproducibility |
+| `LIVE_COST_CAP_USD` | Hard cumulative live-run guardrail |
+
+## Build/reuse corpus and run the locked workflow
+
+Run these commands in order:
+
+```powershell
+$py = "..\.venv\Scripts\python.exe"
+
+# Read-only Day 6 discovery
+& $py scripts\lab.py inspect-day6
+
+# Idempotent chunks, BGE index, manifest and 24-case benchmark
+& $py scripts\lab.py build
+
+# Dev retrieval: 15 answerable cases, consistent top 3
+& $py scripts\lab.py retrieval --split dev --methods dense bm25 hybrid hybrid_mmr
+
+# Lock by the predeclared selection policy before test
+& $py scripts\lab.py lock
+
+# Independent test retrieval: dense baseline + locked method
+& $py scripts\lab.py test
+
+# Live dev agent after permission to send query/retrieved text to OpenAI
+& $py scripts\lab.py agent --split dev --methods hybrid
+
+# Live test agent: baseline and locked method
+& $py scripts\lab.py test --with-agent
+
+# Structural metrics and pending manual-audit sheet
+& $py scripts\lab.py aggregate
+
+# Regenerate automatic checks and human-review packets without API calls
+& $py scripts\lab.py audit prepare
+
+# Tests and final checks
+& $py -m unittest discover -s tests -v
+& $py scripts\lab.py preflight
+git diff --check
+git status --short
+```
+
+Live agent execution uses `gpt-6-luna`, Responses API function calling, a strict `search_evidence` schema, maximum two tool calls, retrieval-only context, bounded retries, and citation-ID enforcement. If the preferred model is absent, the code chooses the first visible low-cost function-calling fallback from `gpt-5-nano`, `gpt-4.1-nano`, and `gpt-4o-mini`; it never fabricates a model response.
+
+The locked configuration is `configs/locked_config.json`: Hybrid RRF, dense/BM25 candidate top 10, final context top 3 and RRF k=60. Do not rerun test with a newly tuned configuration.
+
+Command map:
+
+| Stage | Command |
+|---|---|
+| Build/reuse corpus | `& $py scripts\lab.py build` |
+| Run retrieval dev | `& $py scripts\lab.py retrieval --split dev --methods dense bm25 hybrid hybrid_mmr` |
+| Lock config | `& $py scripts\lab.py lock` |
+| Run independent test retrieval | `& $py scripts\lab.py test` |
+| Run live dev agent | `& $py scripts\lab.py agent --split dev --methods hybrid` |
+| Run live test baseline/chosen | `& $py scripts\lab.py test --with-agent` |
+| Aggregate | `& $py scripts\lab.py aggregate` |
+| Preflight | `& $py scripts\lab.py preflight` |
+
+## Manual audit
+
+Review packets can be read before entering labels:
+
+- `results/manual/benchmark_review_packet.md` — all 24 benchmark cases.
+- `results/manual/agent_review_packet.md` — all 31 executions with cited/final context.
+- `results/manual/ai_review_hints.csv` — explicitly non-official mechanical hints.
+
+Interactive audit is resumable and writes atomically after each completed row:
+
+```powershell
+$py = "..\.venv\Scripts\python.exe"
+& $py scripts\lab.py audit benchmark
+& $py scripts\lab.py audit agent
+& $py scripts\lab.py audit status
+& $py scripts\lab.py aggregate
+```
+
+`aggregate` preserves existing reviews. Before completion, official grounded-answer, semantic-citation and abstention metrics say `pending manual review`; after all rows validate, they are calculated per run and for Dense versus Hybrid test.
+
+## Expected artifact layout
+
+- Corpus/index manifest: `artifacts/corpus_manifest.json`
+- Same-corpus chunks/index: `artifacts/chunks.jsonl`, `artifacts/bge_vectors.f32`
+- Benchmark: `benchmark/questions.jsonl` (15+2 dev, 5+2 test)
+- Dev/test retrieval traces and summaries: `results/retrieval/`
+- Locked configuration: `configs/locked_config.json`
+- Live `gpt-6-luna` traces and aggregate metrics: `results/agent/`
+- Manual audit checklists: `results/manual/`
+- Automatic benchmark/trace checks: `results/automatic_benchmark_checks.json`, `results/automatic_trace_checks.json`
+- Individual report: `report/individual/2A202603874_TrieuHaiDangTrinh.md`
+- Rubric mapping: `report/rubric_coverage.md`
+- Student handoff: `MANUAL_REVIEW_HANDOFF.md`
+
+Gold answers/evidence are used only by local evaluation after retrieval. Retrieval and agent inputs receive only the original question; agent context contains at most three retrieved passages with chunk ID, source, physical page and text. The completed live run used 40,370 tokens and an estimated USD 0.005659. Semantic answer/citation/abstention labels remain `pending_review` until the student checks them.
+
+## Cost, privacy and known limitations
+
+- Live cost is conservatively estimated from API token usage without cache discounts; the run stayed below the USD 1 guardrail.
+- Only question, system/tool schema and top-3 passages were sent. Gold, labels, corpus/PDF, local paths, key and secrets were excluded.
+- Limitations: one English preprint, test N=5 answerable cases, exact-quote metrics, flattened PDF layout, one embedding model, and one live timing run.
+- Citation syntax only proves that an ID is in context. It does not establish semantic support; human review remains required.

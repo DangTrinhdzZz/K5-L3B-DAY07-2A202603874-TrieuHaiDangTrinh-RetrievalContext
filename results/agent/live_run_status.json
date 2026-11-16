@@ -1,0 +1,31 @@
+{
+  "status": "completed",
+  "completed_at_local_date": "2026-11-16",
+  "model": "gpt-6-luna",
+  "responses_api": true,
+  "requested_cases": 31,
+  "successful_cases": 31,
+  "failed_cases": 0,
+  "tool_use": {
+    "n": 31,
+    "N": 31,
+    "call_distribution": {
+      "1": 31
+    }
+  },
+  "maximum_unique_passages_disclosed_per_question": 3,
+  "input_tokens": 36315,
+  "output_tokens": 4055,
+  "total_tokens": 40370,
+  "estimated_cost_usd": 0.005659,
+  "cost_cap_usd": 1.0,
+  "pricing_assumption": "GPT-6 Luna standard: $0.10/M input, $0.50/M output; cache discount ignored.",
+  "mean_latency_ms": 3956.325,
+  "semantic_review": "pending_review",
+  "trace_paths": [
+    "results/agent/dev/hybrid_traces.jsonl",
+    "results/agent/test/dense_traces.jsonl",
+    "results/agent/test/hybrid_traces.jsonl"
+  ],
+  "manual_audit_path": "results/manual/agent_audit.csv"
+}

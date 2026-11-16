@@ -1,0 +1,26 @@
+[
+  {
+    "method": "dense",
+    "model": "gpt-6-luna",
+    "preferred_model": "gpt-6-luna",
+    "preferred_available": true,
+    "visible_model_count": 96,
+    "cases": 7,
+    "requested_cases": 7,
+    "errors": 0,
+    "estimated_cost_usd": 0.0013136,
+    "cost_budget_usd": 0.9969411
+  },
+  {
+    "method": "hybrid",
+    "model": "gpt-6-luna",
+    "preferred_model": "gpt-6-luna",
+    "preferred_available": true,
+    "visible_model_count": 96,
+    "cases": 7,
+    "requested_cases": 7,
+    "errors": 0,
+    "estimated_cost_usd": 0.0012865,
+    "cost_budget_usd": 0.9956275
+  }
+]

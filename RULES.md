@@ -1,6 +1,6 @@
 # Quy tắc Day 7
 
-- Có thể dùng AI hỗ trợ lập trình, nhưng bạn chịu trách nhiệm kiểm tra code, kết quả và nguồn. Không bịa số liệu hoặc sao chép mà không ghi nguồn.
+- Có thể dùng AI hỗ trợ lập trình nhằm đạt điểm tối đa nhất, nhưng phải đảm bảo là hiểu những gì đã làm
 - So sánh trên cùng corpus, bộ câu hỏi và nhãn; báo query gốc và ghi riêng query viết lại hoặc multi-hop. Ghi filter và cách chọn; không suy ra filter từ gold hay đưa gold vào agent.
 - Chọn và chỉnh bằng dev. Nếu đã xem test để chỉnh, tạo test mới và ghi rõ.
 - Chỉ dùng dữ liệu được phép. Không đăng dữ liệu mật, thông tin cá nhân, `.env`, API key hoặc token; kiểm tra quyền trước khi đưa dữ liệu lên dịch vụ ngoài.

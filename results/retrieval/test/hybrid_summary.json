@@ -1,0 +1,23 @@
+{
+  "method": "hybrid",
+  "split": "test",
+  "answerable_queries": 5,
+  "hit_at_1": {
+    "n": 3,
+    "N": 5,
+    "rate": 0.6
+  },
+  "evidence_hit_at_3": {
+    "n": 3,
+    "N": 5,
+    "rate": 0.6
+  },
+  "context_evidence_rate": {
+    "n": 3,
+    "N": 5,
+    "rate": 0.6
+  },
+  "mean_latency_ms": 24.900800000250456,
+  "errors": 0,
+  "embedding_cost_usd": 0
+}
